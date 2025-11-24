@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMARON - CNC Drehbank Index</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-gray-50">
@@ -70,31 +70,9 @@
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[9998]"></div>
 
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        const menuIcon = document.getElementById('menuIcon');
-
-        function toggleMenu() {
-            const isOpen = !mobileMenu.classList.contains('-translate-x-full');
-
-            if (isOpen) {
-                // Zavřít
-                mobileMenu.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-            } else {
-                // Otevřít
-                mobileMenu.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-            }
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-    </script>
+    <!-- Menu init marker -->
+    <div id="menuInit" style="display:none"></div>
+    
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -179,75 +157,7 @@
 
 
 
-            <script>
-                const images = [
-                    'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200',
-                    'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200',
-                    'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200',
-                    'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1200',
-                    'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1200'
-                ];
-
-                let currentIndex = 0;
-
-                function init() {
-                    const thumbnailContainer = document.getElementById('thumbnailContainer');
-                    document.getElementById('totalImages').textContent = images.length;
-
-                    images.forEach((img, index) => {
-                        const thumb = document.createElement('div');
-                        thumb.className = 'flex-shrink-0 w-16 h-16 rounded-md overflow-hidden cursor-pointer border-2 transition-all duration-200';
-
-                        if (index === 0) {
-                            thumb.classList.add('border-white', 'opacity-100');
-                        } else {
-                            thumb.classList.add('border-transparent', 'opacity-70', 'hover:opacity-100');
-                        }
-
-                        const imgEl = document.createElement('img');
-                        imgEl.src = img;
-                        imgEl.alt = `Miniatura ${index + 1}`;
-                        imgEl.className = 'w-full h-full object-cover';
-
-                        thumb.appendChild(imgEl);
-                        thumb.onclick = () => goToImage(index);
-                        thumbnailContainer.appendChild(thumb);
-                    });
-                }
-
-                function goToImage(index) {
-                    currentIndex = index;
-                    updateGallery();
-                }
-
-                function updateGallery() {
-                    document.getElementById('mainImage').src = images[currentIndex];
-                    document.getElementById('currentIndex').textContent = currentIndex + 1;
-
-                    const thumbs = document.getElementById('thumbnailContainer').children;
-                    Array.from(thumbs).forEach((thumb, index) => {
-                        thumb.className = 'flex-shrink-0 w-16 h-16 rounded-md overflow-hidden cursor-pointer border-2 transition-all duration-200';
-
-                        if (index === currentIndex) {
-                            thumb.classList.add('border-white', 'opacity-100');
-                        } else {
-                            thumb.classList.add('border-transparent', 'opacity-70', 'hover:opacity-100');
-                        }
-                    });
-                }
-
-                document.getElementById('prevBtn').onclick = () => {
-                    currentIndex = (currentIndex - 1 + images.length) % images.length;
-                    updateGallery();
-                };
-
-                document.getElementById('nextBtn').onclick = () => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    updateGallery();
-                };
-
-                init();
-            </script>
+            
 
 
 
@@ -556,7 +466,10 @@
     </a>
   </div>
 </div>
-  </footer>
+    </footer>
+
+    <!-- Load consolidated JS -->
+    <script src="js/script.js"></script>
 
 </body>
 

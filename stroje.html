@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMARON - Stroje</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-gray-50 font-sans">
@@ -70,31 +70,8 @@
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[9998]"></div>
 
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        const menuIcon = document.getElementById('menuIcon');
-
-        function toggleMenu() {
-            const isOpen = !mobileMenu.classList.contains('-translate-x-full');
-
-            if (isOpen) {
-                // Zavřít
-                mobileMenu.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-            } else {
-                // Otevřít
-                mobileMenu.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-            }
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-    </script>
+    <!-- Menu init marker -->
+    <div id="menuInit" style="display:none"></div>
 
     <!-- ================= HEADER ================= -->
     <section class="bg-white py-12">
@@ -147,7 +124,7 @@
             <!-- Header with Clear Button -->
             <div class="flex items-center justify-between mb-4 pb-4 border-b border-slate-200">
               <h3 class="text-lg font-semibold text-slate-900/95">Filtry</h3>
-              <button onclick="clearAllFilters()" class="text-sm text-slate-600 hover:text-slate-900 underline">
+              <button id="clearFiltersBtn" class="text-sm text-slate-600 hover:text-slate-900 underline">
                 Vymazat vše
               </button>
             </div>
@@ -160,19 +137,19 @@
                 <h4 class="font-medium text-slate-900/95 mb-3">Kategorie</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="CNC Soustruh" data-filter="kategorie" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="CNC Soustruh" data-filter="kategorie" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">CNC soustruhy</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="CNC Frézka" data-filter="kategorie" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="CNC Frézka" data-filter="kategorie" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">CNC frézky</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Obráběcí centrum" data-filter="kategorie" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Obráběcí centrum" data-filter="kategorie" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Obráběcí centra</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Vřetenová bruska" data-filter="kategorie" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Vřetenová bruska" data-filter="kategorie" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Vřetenové brusky</span>
                   </label>
                 </div>
@@ -183,15 +160,15 @@
                 <h4 class="font-medium text-slate-900/95 mb-3">Typ stroje</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Vertikální" data-filter="typ" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Vertikální" data-filter="typ" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Vertikální</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Horizontální" data-filter="typ" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Horizontální" data-filter="typ" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Horizontální</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Portálový" data-filter="typ" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Portálový" data-filter="typ" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Portálový</span>
                   </label>
                 </div>
@@ -202,23 +179,23 @@
                 <h4 class="font-medium text-slate-900/95 mb-3">Výrobce</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Haas" data-filter="vyrobce" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Haas" data-filter="vyrobce" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Haas</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="DMG Mori" data-filter="vyrobce" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="DMG Mori" data-filter="vyrobce" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">DMG Mori</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Mazak" data-filter="vyrobce" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Mazak" data-filter="vyrobce" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Mazak</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Index" data-filter="vyrobce" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Index" data-filter="vyrobce" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Index</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Okuma" data-filter="vyrobce" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Okuma" data-filter="vyrobce" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Okuma</span>
                   </label>
                 </div>
@@ -229,15 +206,15 @@
                 <h4 class="font-medium text-slate-900/95 mb-3">Model</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="VF-2" data-filter="model" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="VF-2" data-filter="model" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">VF-2</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="VF-3" data-filter="model" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="VF-3" data-filter="model" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">VF-3</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="VF-4" data-filter="model" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="VF-4" data-filter="model" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">VF-4</span>
                   </label>
                 </div>
@@ -248,19 +225,19 @@
                 <h4 class="font-medium text-slate-900/95 mb-3">Řídicí systém</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Fanuc" data-filter="system" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Fanuc" data-filter="system" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Fanuc</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Siemens" data-filter="system" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Siemens" data-filter="system" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Siemens</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Heidenhain" data-filter="system" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Heidenhain" data-filter="system" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Heidenhain</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="Mitsubishi" data-filter="system" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="Mitsubishi" data-filter="system" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">Mitsubishi</span>
                   </label>
                 </div>
@@ -271,11 +248,11 @@
                 <h4 class="font-medium text-slate-900/95 mb-3">Rok výroby</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="2020" data-filter="rok" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="2020" data-filter="rok" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">2020 - 2025</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
-                    <input type="checkbox" value="2015" data-filter="rok" onchange="updateFilters()" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
+                    <input type="checkbox" value="2015" data-filter="rok" class="w-4 h-4 text-slate-900 border-slate-300 rounded focus:ring-slate-900">
                     <span class="text-sm text-slate-900/95">2015 - 2019</span>
                   </label>
                   <label class="flex items-center space-x-2 cursor-pointer hover:bg-slate-50 p-2 rounded">
@@ -289,7 +266,7 @@
 
             <!-- Apply Button -->
             <div class="mt-6 pt-4 border-t border-slate-200 flex justify-end">
-              <button onclick="applyFilters()" class="px-6 py-2 bg-slate-900/95 text-white rounded-lg hover:bg-slate-800 transition">
+              <button id="applyFiltersBtn" class="px-6 py-2 bg-slate-900/95 text-white rounded-lg hover:bg-slate-800 transition">
                 Použít filtry
               </button>
             </div>
@@ -368,113 +345,7 @@
     </div>
   </div>
 
-  <script>
-    (function(){
-      const filterPanel = document.getElementById('filter-panel');
-      const filterToggle = document.getElementById('filterToggleBtn');
-      const filterArrow = document.getElementById('filter-arrow');
-      const filterCount = document.getElementById('filter-count');
-      let isOpen = false;
-
-      function openPanel() {
-        filterPanel.classList.remove('hidden');
-        filterPanel.classList.add('open');
-        filterArrow.style.transform = 'rotate(180deg)';
-        isOpen = true;
-      }
-
-      function closePanel() {
-        filterPanel.classList.add('hidden');
-        filterPanel.classList.remove('open');
-        filterArrow.style.transform = 'rotate(0deg)';
-        isOpen = false;
-      }
-
-      // Toggle handler (keeps backwards compatibility with inline onclick)
-      window.toggleFilters = function() {
-        try {
-          const panel = document.getElementById('filter-panel');
-          const arrow = document.getElementById('filter-arrow');
-          if (!panel) return console.warn('filter-panel not found');
-          // Toggle both hidden and open to ensure visibility and transitions
-          const willOpen = panel.classList.contains('hidden');
-          if (willOpen) { panel.classList.remove('hidden'); panel.classList.add('open'); }
-          else { panel.classList.add('hidden'); panel.classList.remove('open'); }
-          if (arrow) arrow.style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-          isOpen = willOpen;
-          console.log('toggleFilters called, isOpen=', isOpen);
-        } catch (err) { console.error('toggleFilters error', err); }
-      };
-
-      // Update badge count
-      window.updateFilters = function() {
-        const boxes = filterPanel.querySelectorAll('input[type="checkbox"]');
-        let c = 0; boxes.forEach(b=>{ if (b.checked) c++; });
-        if (c>0) { filterCount.textContent = c; filterCount.classList.remove('hidden'); }
-        else { filterCount.classList.add('hidden'); }
-      };
-
-      window.clearAllFilters = function() {
-        const boxes = filterPanel.querySelectorAll('input[type="checkbox"]');
-        boxes.forEach(b=>b.checked=false);
-        updateFilters();
-        document.querySelectorAll('.machine-card').forEach(card=>card.classList.remove('hidden-filter'));
-      };
-
-      window.applyFilters = function() {
-        const checked = filterPanel.querySelectorAll('input[type="checkbox"]:checked');
-        const active = { kategorie:[], vyrobce:[], typ:[], model:[], system:[], rok:[] };
-        checked.forEach(cb=>{ const t = cb.getAttribute('data-filter'); if (t && active[t]) active[t].push(cb.value); });
-
-        const cards = document.querySelectorAll('.machine-card');
-        const hasActive = Object.values(active).some(a=>a.length>0);
-        if (!hasActive) { cards.forEach(c=>c.classList.remove('hidden-filter')); closePanel(); return; }
-
-        cards.forEach(card=>{
-          let show = true;
-          for (const key of Object.keys(active)){
-            if (active[key].length===0) continue;
-            const cv = card.getAttribute('data-'+key);
-            if (key==='rok') {
-              if (!cv) { show = false; break; }
-              const year = parseInt(cv,10);
-              const match = active[key].some(r => {
-                const ry = parseInt(r,10);
-                if (ry===2020) return year>=2020 && year<=2025;
-                if (ry===2015) return year>=2015 && year<=2019;
-                if (ry===2010) return year>=2010 && year<=2014;
-                return false;
-              });
-              if (!match) { show=false; break; }
-            } else {
-              if (!cv || !active[key].includes(cv)) { show=false; break; }
-            }
-          }
-          if (show) card.classList.remove('hidden-filter'); else card.classList.add('hidden-filter');
-        });
-
-        closePanel();
-      };
-
-      // Wire up events
-      filterToggle.addEventListener('click', function(e){ e.stopPropagation(); toggleFilters(); });
-      filterPanel.addEventListener('click', function(e){ e.stopPropagation(); });
-
-      // Close when clicking outside
-      document.addEventListener('click', function(e){ if (isOpen && !filterPanel.contains(e.target) && !filterToggle.contains(e.target)) closePanel(); });
-
-      // Initialize from URL param
-      document.addEventListener('DOMContentLoaded', function(){
-        const params = new URLSearchParams(window.location.search); const k = params.get('kategorie');
-        if (k) {
-          const boxes = filterPanel.querySelectorAll('input[type="checkbox"]');
-          boxes.forEach(b=>{ if (b.getAttribute('data-filter')==='kategorie' && b.value===k) b.checked=true; });
-          updateFilters(); applyFilters();
-        }
-      });
-
-    })();
-  </script>
+  <!-- filter scripts moved to js/script.js -->
 
 
 
@@ -628,6 +499,9 @@
 </div>
   </footer>
 
+
+  <!-- Load consolidated JS -->
+  <script src="js/script.js"></script>
 
 </body>
 

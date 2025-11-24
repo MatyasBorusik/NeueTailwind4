@@ -7,7 +7,7 @@
   <title>AMARON - Úvod</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="min-h-screen bg-white font-sans">
@@ -71,31 +71,8 @@
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[9998]"></div>
 
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.getElementById('overlay');
-        const menuIcon = document.getElementById('menuIcon');
-
-        function toggleMenu() {
-            const isOpen = !mobileMenu.classList.contains('-translate-x-full');
-
-            if (isOpen) {
-                // Zavřít
-                mobileMenu.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-            } else {
-                // Otevřít
-                mobileMenu.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-            }
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-    </script>
+    <!-- Menu init marker (replace previous inline script) -->
+    <div id="menuInit" style="display:none"></div>
 
   <!-- ================= HERO SECTION ================= -->
   <section class="relative  bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
@@ -175,7 +152,7 @@
           </svg>
         </div>
 
-        <div class="swiper kategorieSwiper">
+        <div id="kategorieSwiper" data-init="kategorieSwiper" class="swiper kategorieSwiper">
           <div class="swiper-wrapper pb-12">
                 <!-- Kategorie 1 - CNC soustruhy -->
       <div class="swiper-slide">
@@ -263,7 +240,7 @@
           </svg>
         </div>
 
-        <div class="swiper produktySwiper">
+        <div id="produktySwiper" data-init="produktySwiper" class="swiper produktySwiper">
           <div class="swiper-wrapper pb-12">
             <!-- Produkt 1 -->
             <div class="swiper-slide">
@@ -343,64 +320,7 @@
     </div>
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    const kategorieSwiper = new Swiper('.kategorieSwiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.kategorie-next',
-        prevEl: '.kategorie-prev',
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
-      },
-    });
-
-    const produktySwiper = new Swiper('.produktySwiper', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.produkty-next',
-        prevEl: '.produkty-prev',
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
-      },
-    });
-  </script>
+  <script src="js/script.js"></script>
 
   <!-- Swiper / product styles moved to style.css -->
 
