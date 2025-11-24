@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMARON - O nás</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Styles moved to style.css -->
+</head>
+
+<body class="min-h-screen bg-white font-sans">
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="sticky top-0 z-50 bg-slate-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <!-- Hamburger (VLEVO) -->
+            <button id="menuBtn" class="md:hidden text-white z-[10000] relative">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="index.html"> <img src="logo_Amaron.png" alt="Amaron Logo"> </a> s
+            </div>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex items-center text-[26px] space-x-12 text-white">
+                <a href="index.html" class="hover:text-red-500 transition">Úvod</a>
+                <a href="stroje.html" class="hover:text-red-500 transition">Stroje</a>
+                <a href="onas.html" class="hover:text-red-500 transition">O nás</a>
+                <a href="kontakt.html" class="hover:text-red-500 transition">Kontakt</a>
+            </div>
+
+            <!-- Prázdný prostor vpravo na mobilu -->
+            <div class="w-8 md:hidden"></div>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu"
+        class="fixed top-0 left-0 h-screen w-72 bg-slate-900 transform -translate-x-full transition-transform duration-300 z-[9999] md:hidden">
+        <div class="flex flex-col p-8 pt-8 space-y-6">
+            <!-- Logo v menu -->
+            <div class="mb-6">
+            <img src="logo_Amaron.png" alt="Amaron Logo" class="h-12">
+          </div>
+
+            <button
+                class="w-full border-2 border-white text-white text-xl font-bold py-3 hover:bg-white hover:text-slate-900 transition rounded">
+                NAKOUPIT
+            </button>
+            <button
+                class="w-full border-2 border-white text-white text-xl font-bold py-3 hover:bg-white hover:text-slate-900 transition rounded">
+                PRODAT
+            </button>
+
+            <div class="border-t border-gray-700 pt-6 space-y-4">
+                <a href="index.html" class="block text-white text-xl hover:text-red-500 transition py-2">Úvod</a>
+                <a href="stroje.html" class="block text-white text-xl hover:text-red-500 transition py-2">Stroje</a>
+                <a href="onas.html" class="block text-white text-xl hover:text-red-500 transition py-2">O nás</a>
+                <a href="kontakt.html" class="block text-white text-xl hover:text-red-500 transition py-2">Kontakt</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[9998]"></div>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="py-20 px-6 relative parallax-bg overflow-hidden">
+                <div class="max-w-3xl mx-auto relative z-10">
+                <div class="gradient-border rounded-2xl p-12 text-center shine-effect no-hover">
+                  <h1 class="text-5xl md:text-6xl font-bold text-gradient mb-4 no-hover-heading">
+                        KDO JE AMARON?
+                    </h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CO DĚLÁME - SECTION 1 =============== -->
+    <section class="py-16 px-6 bg-gradient-to-br from-[#d4dce8] via-[#e0e7f1] to-[#d4dce8] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 left-0 w-full h-full diagonal-pattern"></div>
+            </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div
+                class="section-card bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl animate-slide-in-left">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-2 h-16 bg-gradient-to-b from-[#2d3e6f] to-[#1e2a4a] rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-slate-900/95">CO DĚLÁME</h2>
+                </div>
+                <p class="text-2xl text-slate-800 leading-relaxed">
+                    AMARON vám nabízí použité obráběcí nástroje, jako jsou soustruhy, vertikální vrtačky,
+                    horizontální vrtačky, lisy, frézovací stroje, brusky, ohýbací válce, ohýbací stroje, nůžky,
+                    stejně jako použité stroje pro drátový a spojovací průmysl od nejlepších evropských
+                    výrobců, jako jsou Tos, Mas, ŠKODA, Wafios a další.
+                </p>
+    </section>
+
+    <!-- ================= CO DĚLÁME - SECTION 2 ================= -->
+    <section class="py-16 px-6 bg-gradient-to-br from-white via-slate-50 to-white relative">
+        <div class="max-w-4xl mx-auto">
+            <div
+                class="section-card bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 md:p-12 shadow-xl border border-slate-200 animate-slide-in-right">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-2 h-16 bg-gradient-to-b from-[#2d3e6f] to-[#1e2a4a] rounded-full"></div>
+                    <h2 class="text-4xl font-bold text-slate-900/95">NAŠE SLUŽBY</h2>
+                </div>
+                <p class="text-2xl text-slate-800 leading-relaxed mb-8">
+                    Poskytujeme přepravu použitých CNC a dalších strojů ke zákazníkovi, ale také zajišťujeme
+                    celní formuláře a další dokumentaci pro export. V rámci našeho komplexního zákaznického
+                    servisu také poskytujeme náhradní díly a školení pro stroj, který si přejete zakoupit, včetně
+                    potřebných technických parametrů a plateb.
+                </p>
+
+                <!-- Service features -->
+                <div class="text-2xl grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm">
+                        <div
+                            class="w-8 h-8 bg-[#2d3e6f] rounded-full flex items-center justify-center text-white text-sm flex-shrink-0">
+                            ✓</div>
+                        <div>
+                            <div class="font-semibold  text-slate-900">Přeprava</div>
+                            <div class="text-sm text-slate-600">Bezpečná doprava strojů</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm">
+                        <div
+                            class="w-8 h-8 bg-[#2d3e6f] rounded-full flex items-center justify-center text-white text-sm flex-shrink-0">
+                            ✓</div>
+                        <div>
+                            <div class="font-semibold text-slate-900">Export</div>
+                            <div class="text-sm text-slate-600">Celní dokumentace</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm">
+                        <div
+                            class="w-8 h-8 bg-[#2d3e6f] rounded-full flex items-center justify-center text-white text-sm flex-shrink-0">
+                            ✓</div>
+                        <div>
+                            <div class="font-semibold text-slate-900">Náhradní díly</div>
+                            <div class="text-sm text-slate-600">Kompletní servis</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm">
+                        <div
+                            class="w-8 h-8 bg-[#2d3e6f] rounded-full flex items-center justify-center text-white text-sm flex-shrink-0">
+                            ✓</div>
+                        <div>
+                            <div class="font-semibold text-slate-900">Školení</div>
+                            <div class="text-sm text-slate-600">Odborná příprava</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button
+                        class="group relative px-10 py-4 bg-[#2d3e6f] text-white font-semibold rounded-full hover:bg-[#1e2a4a] transition transform hover:scale-105 shine-effect overflow-hidden">
+                        <span class="relative z-10">Požádat nyní</span>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FINAL SECTION ================= -->
+    <section
+        class="py-20 px-6 bg-gradient-to-br from-[#0a1f4d] via-[#1e2a4a] to-[#2d3e6f] text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-400 rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center animate-fade-in-up">
+                <p class="text-2xl md:text-3xl leading-relaxed mb-6">
+                    <span
+                        class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-purple-200">AMARON</span>
+                    během 24 let se rozšířila na export špičkových řešení použitých CNC strojů a dále se rozvíjí.
+                </p>
+                <div class="flex items-center justify-center gap-4 mt-8">
+                    <div class="w-16 h-1 bg-gradient-to-r from-transparent to-blue-400"></div>
+                    <div
+                        class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-purple-200">
+                        2001 - 2025</div>
+                    <div class="w-16 h-1 bg-gradient-to-l from-transparent to-purple-400"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900/95 text-[#FFFFFF] py-16 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pt-7">
+
+      <!-- Kontakt -->
+      <div class="ml-12">
+        <h3 class="text-lg font-bold flex items-center gap-2 mb-4">
+          KONTAKT
+        </h3>
+        <p class="text-sm leading-relaxed">
+          Příkladová ulice 123<br />
+          12345 Příkladové město
+        </p>
+        <div class="mt-3 flex items-center gap-2">
+          <span>+49 123 456 7890</span>
+        </div>
+        <div class="mt-2 flex items-center gap-2">
+          <a href="mailto:info@amaron.com" class="hover:underline">info@amaron.com</a>
+        </div>
+      </div>
+
+      <!-- Unternehmen -->
+      <div class="ml-12">
+        <h3 class="text-lg font-bold mb-4">SPOLEČNOST</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A4 4 0 016 17h12a4 4 0 01.879.804M12 14a4 4 0 100-8 4 4 0 000 8z" />
+            </svg>
+            O nás
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m-9 9h18" />
+            </svg>
+            Kariéra
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+            </svg>
+            Novinky
+          </li>
+        </ul>
+      </div>
+
+      <!-- Rechtliches -->
+      <div class="ml-12">
+        <h3 class="text-lg font-bold mb-4">PRÁVNÍ ZÁLEŽITOSTI</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4-4 4 4m0-8l-4 4-4-4" />
+            </svg>
+            Tiskové informace
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m2 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Ochrana osobních údajů
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            AGB
+          </li>
+        </ul>
+      </div>
+
+<!-- Newsletter -->
+<div class="w-full max-w-xl mx-auto">
+  <h3 class="text-lg font-bold mb-4 text-white">NEWSLETTR</h3>
+  <p class="text-sm mb-4 text-gray-200">
+    Nové nabídky a akce přímo do vaší schránky.
+  </p>
+
+  <form class="flex flex-col sm:w-56 lg:flex-row gap-3 w-full">
+    <input
+      type="email"
+      placeholder="E-Mail-Adresse"
+      class="flex-1 px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#F5EBC3] w-full"
+    />
+
+    <button
+      class="w-full lg:w-auto px-6 py-3 bg-red-600 text-lg text-white font-semibold rounded-lg hover:bg-red-700 transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95 focus:ring-2 focus:ring-[#F5EBC3] focus:ring-offset-2 focus:ring-offset-gray-900"
+    >
+      Odeslat
+    </button>
+  </form>
+
+  <div class="flex gap-4 mt-6 text-[#F5EBC3]">
+    <!-- Facebook -->
+    <a href="#" class="hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+        />
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="#" class="hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+        />
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="#" class="hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+  </footer>
+
+</body>
+
+</html>

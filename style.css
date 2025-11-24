@@ -127,4 +127,11 @@
 }
 .shine-effect:hover::after { left: 100%; }
 
+/* Disable hover/shine effects for elements marked with .no-hover */
+.no-hover.gradient-border::before { opacity: 0 !important; transition: none !important; }
+.no-hover.gradient-border:hover::before { opacity: 0 !important; }
+.no-hover.shine-effect::after { left: -50% !important; transition: none !important; }
+.no-hover.shine-effect:hover::after { left: -50% !important; }
+.no-hover-heading:hover { color: inherit !important; background: none !important; -webkit-text-fill-color: transparent !important; }
+
 .stats-number { font-variant-numeric: tabular-nums; }

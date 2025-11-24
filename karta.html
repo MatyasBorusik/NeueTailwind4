@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMARON - CNC Drehbank Index</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="sticky top-0 z-50 bg-slate-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <!-- Hamburger (VLEVO) -->
+            <button id="menuBtn" class="md:hidden text-white z-[10000] relative">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="index.html"> <img src="logo_Amaron.png" alt="Amaron Logo"> </a>
+            </div>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex items-center text-[26px] space-x-12 text-white">
+                <a href="index.html" class="hover:text-red-500 transition">Úvod</a>
+                <a href="stroje.html" class="hover:text-red-500 transition">Stroje</a>
+                <a href="onas.html" class="hover:text-red-500 transition">O nás</a>
+                <a href="kontakt.html" class="hover:text-red-500 transition">Kontakt</a>
+            </div>
+
+            <!-- Prázdný prostor vpravo na mobilu -->
+            <div class="w-8 md:hidden"></div>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu"
+        class="fixed top-0 left-0 h-screen w-72 bg-slate-900 transform -translate-x-full transition-transform duration-300 z-[9999] md:hidden">
+        <div class="flex flex-col p-8 pt-8 space-y-6">
+            <!-- Logo v menu -->
+                <div class="mb-6">
+                <img src="logo_Amaron.png" alt="Amaron Logo" class="h-12">
+            </div>
+
+            <button
+                class="w-full border-2 border-white text-white text-xl font-bold py-3 hover:bg-white hover:text-slate-900 transition rounded">
+                NAKOUPIT
+            </button>
+            <button
+                class="w-full border-2 border-white text-white text-xl font-bold py-3 hover:bg-white hover:text-slate-900 transition rounded">
+                PRODAT
+            </button>
+
+            <div class="border-t border-gray-700 pt-6 space-y-4">
+                <a href="index.html" class="block text-white text-xl hover:text-red-500 transition py-2">Úvod</a>
+                <a href="stroje.html" class="block text-white text-xl hover:text-red-500 transition py-2">Stroje</a>
+                <a href="onas.html" class="block text-white text-xl hover:text-red-500 transition py-2">O nás</a>
+                <a href="kontakt.html" class="block text-white text-xl hover:text-red-500 transition py-2">Kontakt</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[9998]"></div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+        const menuIcon = document.getElementById('menuIcon');
+
+        function toggleMenu() {
+            const isOpen = !mobileMenu.classList.contains('-translate-x-full');
+
+            if (isOpen) {
+                // Zavřít
+                mobileMenu.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            } else {
+                // Otevřít
+                mobileMenu.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Title -->
+        <div class="flex justify-center mb-8">
+            <div class="bg-slate-900/95 rounded-lg px-12 py-6 inline-block">
+                <h1 class="text-3xl md:text-4xl font-bold text-white whitespace-nowrap">
+                    NABÍDKA STROJŮ
+                </h1>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex justify-center px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8 w-full max-w-[1250px]">
+                <select
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                    <option>Kategorie</option>
+                </select>
+
+                <select
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                    <option>Typ stroje</option>
+                </select>
+
+                <select
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                    <option>Výrobce</option>
+                </select>
+
+                <select
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                    <option>Model</option>
+                </select>
+
+                <select
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                    <option>Řídicí systém</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <!-- Hlavní obrázek s miniaturami -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                <div class="relative w-full aspect-video">
+                    <img id="mainImage" src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200"
+                        alt="Hlavní obrázek stroje" class="absolute top-0 left-0 w-full h-full object-cover">
+
+                    <!-- Navigační šipky -->
+                    <button id="prevBtn"
+                        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all hover:scale-110 z-20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button id="nextBtn"
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all hover:scale-110 z-20">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <!-- Indikátor počtu obrázků -->
+                    <div
+                        class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm z-20">
+                        <span id="currentIndex">1</span> / <span id="totalImages">5</span>
+                    </div>
+
+                    <!-- Slider miniatur VLEVO DOLE -->
+                    <div class="absolute bottom-4 left-4 z-20 max-w-md">
+                        <div class="bg-black bg-opacity-50 backdrop-blur-sm rounded-lg p-2">
+                            <div class="overflow-x-auto">
+                                <div id="thumbnailContainer" class="flex gap-2">
+                                    <!-- Miniatury budou vloženy JavaScriptem -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <script>
+                const images = [
+                    'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200',
+                    'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200',
+                    'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200',
+                    'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=1200',
+                    'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1200'
+                ];
+
+                let currentIndex = 0;
+
+                function init() {
+                    const thumbnailContainer = document.getElementById('thumbnailContainer');
+                    document.getElementById('totalImages').textContent = images.length;
+
+                    images.forEach((img, index) => {
+                        const thumb = document.createElement('div');
+                        thumb.className = 'flex-shrink-0 w-16 h-16 rounded-md overflow-hidden cursor-pointer border-2 transition-all duration-200';
+
+                        if (index === 0) {
+                            thumb.classList.add('border-white', 'opacity-100');
+                        } else {
+                            thumb.classList.add('border-transparent', 'opacity-70', 'hover:opacity-100');
+                        }
+
+                        const imgEl = document.createElement('img');
+                        imgEl.src = img;
+                        imgEl.alt = `Miniatura ${index + 1}`;
+                        imgEl.className = 'w-full h-full object-cover';
+
+                        thumb.appendChild(imgEl);
+                        thumb.onclick = () => goToImage(index);
+                        thumbnailContainer.appendChild(thumb);
+                    });
+                }
+
+                function goToImage(index) {
+                    currentIndex = index;
+                    updateGallery();
+                }
+
+                function updateGallery() {
+                    document.getElementById('mainImage').src = images[currentIndex];
+                    document.getElementById('currentIndex').textContent = currentIndex + 1;
+
+                    const thumbs = document.getElementById('thumbnailContainer').children;
+                    Array.from(thumbs).forEach((thumb, index) => {
+                        thumb.className = 'flex-shrink-0 w-16 h-16 rounded-md overflow-hidden cursor-pointer border-2 transition-all duration-200';
+
+                        if (index === currentIndex) {
+                            thumb.classList.add('border-white', 'opacity-100');
+                        } else {
+                            thumb.classList.add('border-transparent', 'opacity-70', 'hover:opacity-100');
+                        }
+                    });
+                }
+
+                document.getElementById('prevBtn').onclick = () => {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateGallery();
+                };
+
+                document.getElementById('nextBtn').onclick = () => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateGallery();
+                };
+
+                init();
+            </script>
+
+
+
+            <!-- Mobile Info Section -->
+            <div class="lg:hidden p-6 bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">CNC Soustruh</h2>
+                <p class="text-2xl text-gray-700 mb-6">Index</p>
+
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Kategorie</span>
+                        <span class="font-semibold">Soustruh</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Výrobce</span>
+                        <span class="font-semibold">CNC Soustruh</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Rok výroby</span>
+                        <span class="font-semibold">2012</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Typ</span>
+                        <span class="font-semibold">FANUC 211-T</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Right Column - Details (Desktop only) -->
+        <div class="hidden lg:block bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-4xl font-bold text-gray-900 mb-2">CNC Soustruh</h2>
+            <p class="text-3xl text-gray-700 mb-8">Index</p>
+
+            <div class="space-y-4 mb-8">
+                <div class="flex justify-between border-b border-gray-200 pb-3">
+                    <span class="text-gray-600 text-lg">Kategorie</span>
+                    <span class="font-semibold text-lg">Soustruh</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-200 pb-3">
+                    <span class="text-gray-600 text-lg">Výrobce</span>
+                    <span class="font-semibold text-lg">Index</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-200 pb-3">
+                    <span class="text-gray-600 text-lg">Typ</span>
+                    <span class="font-semibold text-lg">CNC Soustruh</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-200 pb-3">
+                    <span class="text-gray-600 text-lg">Rok výroby</span>
+                    <span class="font-semibold text-lg">2012</span>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">TECHNICKÉ ÚDAJE</h3>
+            <div class="space-y-3 mb-8">
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Rozpětí hrotů</span>
+                    <span class="font-medium">750 mm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Průměr soustružení</span>
+                    <span class="font-medium">40 mm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Průchod vřetena</span>
+                    <span class="font-medium">65 mm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Pozice revolveru</span>
+                    <span class="font-medium">2 x 12</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Y-Achse</span>
+                    <span class="font-medium">Ja</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Podavač třísek</span>
+                    <span class="font-medium">Ja</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">MaBe (LX BxH)</span>
+                    <span class="font-medium">3300 kg</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Hmotnost</span>
+                    <span class="font-medium">6.500 kg</span>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-900">Příslušenství</h3>
+        </div>
+        </div>
+
+        <!-- Technical Data (Mobile only) -->
+        <div class="lg:hidden bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">TECHNICKÉ ÚDAJE</h3>
+            <div class="space-y-3 mb-8">
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Rozpětí hrotů</span>
+                    <span class="font-medium">750 mm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Průměr soustružení</span>
+                    <span class="font-medium">40 mm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Průchod vřetena</span>
+                    <span class="font-medium">65 mm</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Pozice revolveru</span>
+                    <span class="font-medium">2 x 12</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Y-Achse</span>
+                    <span class="font-medium">Ja</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Podavač třísek</span>
+                    <span class="font-medium">Ja</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">MaBe (LX BxH)</span>
+                    <span class="font-medium">3300 kg</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Hmotnost</span>
+                    <span class="font-medium">6.500 kg</span>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-900">Příslušenství</h3>
+        </div> <!-- Left Column - Image -->
+
+    </main>
+
+    <!-- Mezera -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Similar Machines -->
+        <div class="mb-12 mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Podobné stroje</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Machine Card 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=300&fit=crop"
+                        alt="CNC Drehbank" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">CNC Drehbank</h3>
+                        <p class="text-lg text-gray-600">Index</p>
+                    </div>
+                </div>
+
+                <!-- Machine Card 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop"
+                        alt="CNC Drehbank" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">CNC Drehbank</h3>
+                        <p class="text-lg text-gray-600">Index</p>
+                    </div>
+                </div>
+
+                <!-- Machine Card 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1563191911-e65f8655ebf9?w=400&h=300&fit=crop"
+                        alt="CNC Drehbank" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">CNC Drehbank</h3>
+                        <p class="text-lg text-gray-600">Index</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900/95 text-[#FFFFFF] py-16 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pt-7">
+
+      <!-- Kontakt -->
+      <div class="ml-12">
+        <h3 class="text-lg font-bold flex items-center gap-2 mb-4">
+          KONTAKT
+        </h3>
+        <p class="text-sm leading-relaxed">
+          Příkladová ulice 123<br />
+          12345 Příkladové město
+        </p>
+        <div class="mt-3 flex items-center gap-2">
+          <span>+49 123 456 7890</span>
+        </div>
+        <div class="mt-2 flex items-center gap-2">
+          <a href="mailto:info@amaron.com" class="hover:underline">info@amaron.com</a>
+        </div>
+      </div>
+
+      <!-- Unternehmen -->
+      <div class="ml-12">
+        <h3 class="text-lg font-bold mb-4">SPOLEČNOST</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5.121 17.804A4 4 0 016 17h12a4 4 0 01.879.804M12 14a4 4 0 100-8 4 4 0 000 8z" />
+            </svg>
+            O nás
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m-9 9h18" />
+            </svg>
+            Kariéra
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+            </svg>
+            Novinky
+          </li>
+        </ul>
+      </div>
+
+      <!-- Rechtliches -->
+      <div class="ml-12">
+        <h3 class="text-lg font-bold mb-4">PRÁVNÍ ZÁLEŽITOSTI</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4-4 4 4m0-8l-4 4-4-4" />
+            </svg>
+            Tiskové informace
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m2 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Ochrana osobních údajů
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            AGB
+          </li>
+        </ul>
+      </div>
+
+<!-- Newsletter -->
+<div class="w-full max-w-xl mx-auto">
+  <h3 class="text-lg font-bold mb-4 text-white">NEWSLETTR</h3>
+  <p class="text-sm mb-4 text-gray-200">
+    Nové nabídky a akce přímo do vaší schránky.
+  </p>
+
+  <form class="flex flex-col sm:w-56 lg:flex-row gap-3 w-full">
+    <input
+      type="email"
+      placeholder="E-Mail-Adresse"
+      class="flex-1 px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#F5EBC3] w-full"
+    />
+
+    <button
+      class="w-full lg:w-auto px-6 py-3 bg-red-600 text-lg text-white font-semibold rounded-lg hover:bg-red-700 transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95 focus:ring-2 focus:ring-[#F5EBC3] focus:ring-offset-2 focus:ring-offset-gray-900"
+    >
+      Odeslat
+    </button>
+  </form>
+
+  <div class="flex gap-4 mt-6 text-[#F5EBC3]">
+    <!-- Facebook -->
+    <a href="#" class="hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+        />
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="#" class="hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+        />
+      </svg>
+    </a>
+
+    <!-- Instagram -->
+    <a href="#" class="hover:text-white transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+  </footer>
+
+</body>
+
+</html>
