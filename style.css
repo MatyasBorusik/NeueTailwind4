@@ -1,0 +1,130 @@
+/* Centralized styles moved from HTML files.
+   Note: `@apply` requires a Tailwind build step (postcss/tailwind cli) to work.
+*/
+
+/* Swiper custom buttons */
+.swiper-button-next-custom,
+.swiper-button-prev-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+  background: rgba(255,255,255,0.3);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(8px);
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  margin: 0;
+  z-index: 10;
+}
+
+.swiper-button-prev-custom { left: -80px; }
+.swiper-button-next-custom { right: -80px; }
+
+.swiper-button-next-custom:hover,
+.swiper-button-prev-custom:hover {
+  transform: scale(1.05);
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+}
+
+.swiper-pagination-bullet { background: #cbd5e1; opacity: 1; }
+.swiper-pagination-bullet-active { background: #0f172a; }
+
+/* Product card hover */
+.product-card { transition: transform 0.3s ease; }
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments for swiper buttons */
+@media (max-width: 1280px) {
+  .swiper-button-prev-custom { left: 0; }
+  .swiper-button-next-custom { right: 0; }
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next-custom,
+  .swiper-button-prev-custom {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.9);
+  }
+  .swiper-button-prev-custom { left: 0; }
+  .swiper-button-next-custom { right: 0; }
+}
+
+/* Filters / Machines (from stroje.html) */
+.filter-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+}
+.filter-panel.open {
+  max-height: 600px;
+  opacity: 1;
+  overflow-y: auto;
+}
+.filter-section { scroll-margin-top: 1rem; }
+.machine-card { transition: opacity 0.3s ease, transform 0.3s ease; }
+.machine-card.hidden-filter { display: none; }
+
+/* Kontakt map frame */
+.map-frame { border: 0; width: 100%; height: 100%; }
+
+/* Repeating diagonal pattern used in O nás */
+.diagonal-pattern { background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(45, 62, 111, 0.1) 35px, rgba(45, 62, 111, 0.1) 70px); }
+
+/* Animations & helpers moved from onas.html */
+@keyframes float { 0%,100%{ transform: translateY(0px);} 50%{ transform: translateY(-20px);} }
+@keyframes fadeInUp { from{ opacity:0; transform: translateY(30px);} to{ opacity:1; transform: translateY(0);} }
+@keyframes slideInLeft { from{ opacity:0; transform: translateX(-50px);} to{ opacity:1; transform: translateX(0);} }
+@keyframes slideInRight { from{ opacity:0; transform: translateX(50px);} to{ opacity:1; transform: translateX(0);} }
+@keyframes pulse-glow { 0%,100%{ box-shadow: 0 0 20px rgba(45,62,111,0.3);} 50%{ box-shadow: 0 0 40px rgba(45,62,111,0.6);} }
+
+.animate-float { animation: float 8s ease-in-out infinite; }
+.animate-fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+.animate-slide-in-left { animation: slideInLeft 0.6s ease forwards; }
+.animate-slide-in-right { animation: slideInRight 0.6s ease forwards; }
+
+.gradient-border { position: relative; background: linear-gradient(135deg, #f5f0e8 0%, #e8dcc8 100%); }
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: linear-gradient(135deg, #2d3e6f, #1e2a4a, #d4dce8);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gradient-border:hover::before { opacity: 1; }
+
+.section-card { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+.section-card:hover { transform: translateY(-5px); }
+
+.text-gradient { background: linear-gradient(135deg, #2d3e6f 0%, #1e2a4a 50%, #0a1f4d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.3; animation: float 8s ease-in-out infinite; }
+.parallax-bg { position: relative; overflow: hidden; }
+
+.shine-effect { position: relative; overflow: hidden; }
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}
+.shine-effect:hover::after { left: 100%; }
+
+.stats-number { font-variant-numeric: tabular-nums; }
